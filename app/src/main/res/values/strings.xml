@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Application1</string>
+    <string name="player1">Player 01</string>
+    <string name="player2">Player 02</string>
+    <string name="na">N/A</string>
+    <string name="zero">0</string>
+    <string name="stud">+ALL</string>
+    <string name="settings">設定</string>
+</resources>
