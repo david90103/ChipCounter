@@ -1,0 +1,67 @@
+body {
+  background: #532F8C;
+}
+
+.jumbotron {
+  background: #532F8C;
+}
+
+.jumbotron .btn-primary {
+  background: #7c50bf;
+  border-color: #845ac7;
+  margin-left: 3%;
+}
+
+.jumbotron .btn-primary:hover {
+  background: #7646c1;
+}
+
+.jumbotron p {
+  color: #d9ccee;
+  max-width: 75%;
+  /*margin: 1em auto 2em;*/
+}
+
+.jumbotron h1 {
+  color: white;
+}
+
+.jumbotron .lang-logo {
+  display: block;
+  background: #B01302;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  /*border: 2px solid white;*/
+}
+
+.jumbotron .lang-logo img {
+  max-width: 100%;
+}
+
+.top {
+  margin-top: 15%;
+}
+
+.mid {
+  margin: 5%;
+}
+
+h1 {
+  font-family: "微軟正黑體";
+}
+
+.form {
+  display: none;
+}
+
+footer {
+   color: white;
+   background-color: #57148a;
+   font-size: 24px;
+   text-align: center;
+   margin-top: 5%;
+   padding: 20px;
+ }

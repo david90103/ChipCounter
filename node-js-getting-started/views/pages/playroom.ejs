@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/playroom.css" />
+</head>
+
+<body>
+  <div class="container-fluid main">
+
+    <div class="row" style="text-align: center;">
+      <h3>welcome to room <%= data.room %><hr style="width: 70%;" /></h3>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+
+      <div class="col-md-8 well">
+        1
+      </div>
+
+      <div class="col-md-2 log well">
+        <strong>Log:</strong><br /><br />
+      </div>
+
+      <div class="col-md-1"></div>
+    </div>
+
+
+
+
+
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      var socket = io.connect();
+      // socket.emit('leave');
+ 			socket.emit('joined', <%= data.room %>);
+
+      socket.on('joinsuccess', function() {
+        $('.log').append('<p>Join success!!</p>');
+      });
+
+      socket.on('new member', function() {
+        $('.log').append('<p>Someone just join this room.</p>');
+      });
+
+      socket.on('left member', function() {
+        $('.log').append('<p>Someone just left this room.</p>');
+      });
+
+    });
+  </script>
+
+</body>
+</html>

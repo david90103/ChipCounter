@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/home.css" />
+</head>
+
+<body>
+<!-- <div class="container-fluid"> -->
+<div class=" container-fluid">
+  <div class="row top"></div>
+  <div class="row jumbotron text-center">
+    <a href="/" class="lang-logo">
+      <img src="https://image.flaticon.com/icons/svg/138/138347.svg">
+      </a>
+      <h1>賭金計算機</h1>
+      <!-- <audio src="bgm.mp3" id="bgm"></audio> -->
+      <hr />
+
+    <a type="button" class="btn btn-lg btn-default startpage" id="add_btn"><span class="glyphicon glyphicon-plus"></span> 新增房間</a>
+    <a type="button" class="btn btn-lg btn-primary startpage" id="pick_btn"><span class="glyphicon glyphicon-log-in"></span> 選擇房間</a>
+    <div class="form">
+      <form id="room_form">
+        <input id="roomid" type="text" placeholder="新增房間號碼 (數字)" size="30"><br />
+        <input type="submit" value="Submit" class="btn" style="margin-top: 10px; margin-left: 0px;" />
+      </form>
+    </div>
+  </div>
+  <div class="row mid"></div>
+  <div class="row">
+    <footer>
+     <h3 style="color: rgb(228, 228, 228);">Made by davidtsai</h3>
+     <hr style="width: 60%;" />
+     <div>
+       <a href="https://www.facebook.com/fcuiecs/?fref=ts"><img src="https://image.flaticon.com/icons/svg/33/33702.svg" width="30px" style="margin-right: 30px;"/></a>
+       <a href="https://github.com/fcu-d0542367"><img src="https://image.flaticon.com/icons/svg/25/25231.svg" width="30px" style="margin-right: 30px;"/></a>
+       <a href="http://www.iecs.fcu.edu.tw/"><img src="https://image.flaticon.com/icons/svg/149/149229.svg" width="30px"/></a>
+     </div>
+   </footer>
+ </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    // document.getElementById("bgm").play();
+    var socket = io.connect();
+    var type = 'add';
+
+    $("#add_btn").click(function(){
+        $('.startpage').fadeOut();
+        setTimeout(function () {
+          $('.form').fadeIn();
+        }, 400);
+    });
+    $("#pick_btn").click(function(){
+        $('.startpage').fadeOut();
+        setTimeout(function () {
+          $('.form').fadeIn();
+          $('.form input').attr('placeholder', '房間號碼');
+          type = 'pick';
+        }, 400);
+    });
+    $('#room_form').submit(function() {
+      if (type === 'add') socket.emit('add room', $('#roomid').val());
+      else socket.emit('pick room', $('#roomid').val());
+    });
+    socket.on('created', function(destination) {
+      alert('Created room ' + $('#roomid').val());
+    });
+    socket.on('redirect', function(destination) {
+      if (confirm('Enter Room ' + $('#roomid').val())) {
+        window.location.href = destination;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
